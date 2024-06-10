@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public Door[] doors;
-
+    public Button confirmButton;
     private int selectedDoorIndex;
     private int revealedDoorIndex;
 
@@ -19,6 +20,8 @@ public class GameController : MonoBehaviour
         {
             doors[i].HideCar(i == winningDoorIndex);
         }
+
+        confirmButton.interactable = false;
     }
 
     public void SelectDoor(int doorIndex)
@@ -28,6 +31,22 @@ public class GameController : MonoBehaviour
         {
             doors[i].SelectDoor(selectedDoorIndex);
         }
-        print("Door index selected: " + selectedDoorIndex);
+        confirmButton.interactable = true;
+    }
+
+    public void ConfirmDoorSelection()
+    {
+        print("selected door was:" + selectedDoorIndex);
+        RevealAnotherDoor();
+        PromptToSwitch();
+    }
+
+    private void RevealAnotherDoor()
+    {
+        print("revealing a door...");
+    }
+    private void PromptToSwitch()
+    {
+        print("do you wanna switch???");
     }
 }
