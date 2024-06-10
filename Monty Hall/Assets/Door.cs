@@ -4,25 +4,22 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public bool hasCar;
+    public int doorIndex;
     [SerializeField] private Sprite doorOpenSprite;
     [SerializeField] private Sprite doorClosedSprite;
-    public bool hasCar;
     private GameObject car;
     private GameObject goat;
-    public int doorIndex;
-    private bool isOpen = false;
     private SpriteRenderer spriteRenderer;
-
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = doorClosedSprite;
+
         doorIndex = transform.GetSiblingIndex();
         car = transform.Find("car").gameObject;
         goat = transform.Find("goat").gameObject;
-        car.SetActive(false);
-        goat.SetActive(false);
+        ResetState();
     }
 
     public void HideCar(bool hasCar)
@@ -42,7 +39,6 @@ public class Door : MonoBehaviour
         }
     }
 
-
     public void Reveal()
     {
         spriteRenderer.sprite = doorOpenSprite;
@@ -56,18 +52,11 @@ public class Door : MonoBehaviour
         }
     }
 
-    public void ToggleOpen()
+    public void ResetState()
     {
-        isOpen = !isOpen;
-        if (isOpen)
-        {
-            spriteRenderer.sprite = doorOpenSprite;
-        }
-        else
-        {
-            spriteRenderer.sprite = doorClosedSprite;
-        }
+        hasCar = false;
+        goat.SetActive(false);
+        car.SetActive(false);
+        spriteRenderer.sprite = doorClosedSprite;
     }
-
-
 }
