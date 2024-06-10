@@ -1,16 +1,22 @@
 using System.Collections;
+using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public Image[] goatLives;
+    public TextMeshProUGUI scoreText;
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI resultsText;
     [SerializeField] private float delayBeforeReveal;
     [SerializeField] private float delayBetweenRounds;
     public Door[] doors;
     public Button confirmButton;
     public GameObject switchPrompt;
     public int score = 0;
-    public int lives = 3;
+    public int livesLost = 0;
     private int selectedDoorIndex;
     private int revealedDoorIndex;
 
@@ -81,18 +87,24 @@ public class GameController : MonoBehaviour
         if (doors[selectedDoorIndex].hasCar)
         {
             score++;
+            scoreText.text = score.ToString();
         }
         else
         {
-            lives--;
+            Color color = new(1, 0.4f, 0.4f, 1);
+            goatLives[livesLost].color = color;
+            livesLost++;
         }
 
-        print("Score: " + score);
-        print("Lives: " + lives);
 
-        if (lives > 0)
+
+        if (livesLost < 3)
         {
             StartCoroutine(DelayBeforeNextRound());
+        }
+        else
+        {
+            GameOver();
         }
 
     }
@@ -107,6 +119,13 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(delayBetweenRounds);
         SetUpNewRound();
+    }
+
+    private void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        resultsText.text = "You found " + score.ToString() + " cars.";
+
     }
 
 
