@@ -44,6 +44,14 @@ public class GameController : MonoBehaviour
     private void RevealAnotherDoor()
     {
         print("revealing a door...");
+        for (int i = 0; i < doors.Length; i++)
+        {
+            if (i != selectedDoorIndex && !doors[i].hasCar)
+            {
+                doors[i].Reveal();
+            }
+        }
+
     }
     private void PromptToSwitch()
     {

@@ -6,9 +6,10 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private Sprite doorOpenSprite;
     [SerializeField] private Sprite doorClosedSprite;
-    [SerializeField] private bool hasCar;
+    public bool hasCar;
+    private GameObject car;
+    private GameObject goat;
     public int doorIndex;
-    private bool isSelected = false;
     private bool isOpen = false;
     private SpriteRenderer spriteRenderer;
 
@@ -16,7 +17,12 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = doorClosedSprite;
         doorIndex = transform.GetSiblingIndex();
+        car = transform.Find("car").gameObject;
+        goat = transform.Find("goat").gameObject;
+        car.SetActive(false);
+        goat.SetActive(false);
     }
 
     public void HideCar(bool hasCar)
@@ -28,15 +34,28 @@ public class Door : MonoBehaviour
     {
         if (doorIndex == index)
         {
-            isSelected = true;
             spriteRenderer.color = Color.green;
         }
         else
         {
-            isSelected = false;
             spriteRenderer.color = Color.white;
         }
     }
+
+
+    public void Reveal()
+    {
+        spriteRenderer.sprite = doorOpenSprite;
+        if (hasCar)
+        {
+            car.SetActive(true);
+        }
+        else
+        {
+            goat.SetActive(true);
+        }
+    }
+
     public void ToggleOpen()
     {
         isOpen = !isOpen;
