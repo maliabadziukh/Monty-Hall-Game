@@ -15,10 +15,10 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         doorIndex = transform.GetSiblingIndex();
         car = transform.Find("car").gameObject;
         goat = transform.Find("goat").gameObject;
+
         ResetState();
     }
 
@@ -54,7 +54,6 @@ public class Door : MonoBehaviour
 
     public void ResetState()
     {
-        hasCar = false;
         goat.SetActive(false);
         car.SetActive(false);
         spriteRenderer.sprite = doorClosedSprite;
