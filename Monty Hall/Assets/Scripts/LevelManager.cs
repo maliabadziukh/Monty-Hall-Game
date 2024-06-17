@@ -31,4 +31,14 @@ public class LevelManager : MonoBehaviour
             newDoor.transform.position = new Vector3(xPos, 0, 0);
         }
     }
+
+    private void ShowFirstWheel()
+    {
+
+    }
+
+    private void ShowSecondWheel()
+    {
+
+    }
 }
