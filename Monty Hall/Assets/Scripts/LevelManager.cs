@@ -33,20 +33,31 @@ public class LevelManager : MonoBehaviour
         levelConfig = config;
         confirmButton.interactable = false;
 
-        SetUpWheel(config.wheelOptions);
-
         SetUpDoors(levelConfig.doorNumber);
     }
-    private void SetUpWheel(string[] wheelOptions)
+    public void ShowFirstWheel()
     {
-        Instantiate(pickerWheelPrefab);
-        pickerWheel = GameObject.FindObjectOfType<PickerWheel>();
-        WheelPiece[] wheelPieces = new WheelPiece[wheelOptions.Length];
-        for (int i = 0; i < wheelOptions.Length; i++)
+        string[] wheelOptions = levelConfig.wheelOptions;
+        if (pickerWheel != null)
         {
-            wheelPieces[i] = new WheelPiece() { Label = wheelOptions[i] };
+            Destroy(pickerWheel.gameObject);
         }
-        pickerWheel.InitializeWheel(wheelPieces);
+        if (wheelOptions.Length > 1)
+        {
+            Instantiate(pickerWheelPrefab);
+            pickerWheel = GameObject.FindObjectOfType<PickerWheel>();
+            WheelPiece[] wheelPieces = new WheelPiece[wheelOptions.Length];
+            for (int i = 0; i < wheelOptions.Length; i++)
+            {
+                wheelPieces[i] = new WheelPiece() { Label = wheelOptions[i] };
+            }
+            pickerWheel.InitializeWheel(wheelPieces);
+        }
+        else
+        {
+            RevealChosenDoor();
+        }
+
     }
     private void SetUpDoors(int doorNumber)
     {
@@ -73,23 +84,9 @@ public class LevelManager : MonoBehaviour
         confirmButton.interactable = true;
     }
 
-    private void SetUpWheel()
+    private void RevealChosenDoor()
     {
-
-    }
-
-    public void ShowFirstWheel()
-    {
-        if (levelConfig.wheelOptions.Length != 0)
-        {
-
-            pickerWheel.gameObject.SetActive(true);
-        }
-        else
-        {
-
-            //reveal chosen door 
-        }
+        print("revealing chosen door...");
     }
 
     private void ShowSecondWheel()
