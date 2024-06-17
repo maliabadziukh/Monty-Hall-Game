@@ -15,28 +15,13 @@ public class Demo : MonoBehaviour
         {
             spinButton.interactable = false;
             spinButtonText.text = "Spinning...";
-            pickerWheel.OnSpinStart(() =>
-      {
-          Debug.Log("Spin start...");
-      });
-
+            pickerWheel.OnSpinStart(() => { });
             pickerWheel.OnSpinEnd(wheelPiece =>
             {
-                Debug.Log("Spin end :");
-                Debug.Log("Index   : " + wheelPiece.Index);
-                Debug.Log("Chance  : " + wheelPiece.Chance);
-                Debug.Log("Label   : " + wheelPiece.Label);
-                Debug.Log("Amount  : " + wheelPiece.Amount);
                 spinButton.interactable = true;
                 spinButtonText.text = "Spin";
             });
             pickerWheel.Spin();
         });
-
-
-
-
-
-
     }
 }

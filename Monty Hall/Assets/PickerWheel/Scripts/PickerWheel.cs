@@ -63,6 +63,16 @@ namespace EasyUI.PickerWheelUI
 
       private void Start()
       {
+
+
+      }
+      public void InitializeWheel(WheelPiece[] pieces)
+      {
+         foreach (Transform child in wheelPiecesParent)
+         {
+            Destroy(child.gameObject);
+         }
+         wheelPieces = pieces;
          pieceAngle = 360 / wheelPieces.Length;
          halfPieceAngle = pieceAngle / 2f;
          halfPieceAngleWithPaddings = halfPieceAngle - (halfPieceAngle / 4f);
@@ -75,7 +85,6 @@ namespace EasyUI.PickerWheelUI
 
 
          SetupAudio();
-
       }
 
       private void SetupAudio()
@@ -106,9 +115,9 @@ namespace EasyUI.PickerWheelUI
          WheelPiece piece = wheelPieces[index];
          Transform pieceTrns = InstantiatePiece().transform.GetChild(0);
 
-         pieceTrns.GetChild(0).GetComponent<Image>().sprite = piece.Icon;
-         pieceTrns.GetChild(1).GetComponent<Text>().text = piece.Label;
-         pieceTrns.GetChild(2).GetComponent<Text>().text = piece.Amount.ToString();
+         // pieceTrns.GetChild(0).GetComponent<Image>().sprite = piece.Icon;
+         pieceTrns.GetChild(0).GetComponent<Text>().text = piece.Label;
+         // pieceTrns.GetChild(2).GetComponent<Text>().text = piece.Amount.ToString();
 
          //Line
          Transform lineTrns = Instantiate(linePrefab, linesParent.position, Quaternion.identity, linesParent).transform;

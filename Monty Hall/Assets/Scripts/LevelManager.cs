@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using EasyUI.PickerWheelUI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +12,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<Door> doors;
     [SerializeField] private int selectedDoorIndex;
     [SerializeField] private int revealedDoorIndex;
+    private LevelConfig levelConfig;
     private float halfScreenWidth;
+
 
     //ui
     public Button confirmButton;
+    [SerializeField] private GameObject pickerWheelPrefab;
+    private PickerWheel pickerWheel;
 
     void Start()
     {
@@ -22,12 +27,27 @@ public class LevelManager : MonoBehaviour
         halfScreenWidth = Camera.main.orthographicSize * Camera.main.aspect;
     }
 
-    public void SetUpLevel(LevelConfig levelConfig)
+    public void SetUpLevel(LevelConfig config)
     {
         print("Setting up level...");
+        levelConfig = config;
+        confirmButton.interactable = false;
+
+        SetUpWheel(config.wheelOptions);
+
         SetUpDoors(levelConfig.doorNumber);
     }
-
+    private void SetUpWheel(string[] wheelOptions)
+    {
+        Instantiate(pickerWheelPrefab);
+        pickerWheel = GameObject.FindObjectOfType<PickerWheel>();
+        WheelPiece[] wheelPieces = new WheelPiece[wheelOptions.Length];
+        for (int i = 0; i < wheelOptions.Length; i++)
+        {
+            wheelPieces[i] = new WheelPiece() { Label = wheelOptions[i] };
+        }
+        pickerWheel.InitializeWheel(wheelPieces);
+    }
     private void SetUpDoors(int doorNumber)
     {
         float spacing = halfScreenWidth * 2 / (doorNumber + 1);
@@ -53,13 +73,28 @@ public class LevelManager : MonoBehaviour
         confirmButton.interactable = true;
     }
 
-    private void ShowFirstWheel()
+    private void SetUpWheel()
     {
 
+    }
+
+    public void ShowFirstWheel()
+    {
+        if (levelConfig.wheelOptions.Length != 0)
+        {
+
+            pickerWheel.gameObject.SetActive(true);
+        }
+        else
+        {
+
+            //reveal chosen door 
+        }
     }
 
     private void ShowSecondWheel()
     {
 
     }
+
 }

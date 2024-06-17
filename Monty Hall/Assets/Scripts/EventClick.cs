@@ -17,7 +17,6 @@ public class EventClick : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("door click");
         levelManager.SelectDoor(door.doorIndex);
     }
 }
