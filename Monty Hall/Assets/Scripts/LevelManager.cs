@@ -12,19 +12,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<Door> doors;
     [SerializeField] private int selectedDoorIndex;
     [SerializeField] private int revealedDoorIndex;
+    private GameManager gameManager;
     private LevelConfig levelConfig;
     private float halfScreenWidth;
-
-
-    //ui
     public Button confirmButton;
     [SerializeField] private GameObject pickerWheelPrefab;
     private PickerWheel pickerWheel;
 
     void Start()
     {
-        //initialize variables
         halfScreenWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void SetUpLevel(LevelConfig config)
@@ -32,9 +30,44 @@ public class LevelManager : MonoBehaviour
         print("Setting up level...");
         levelConfig = config;
         confirmButton.interactable = false;
-
         SetUpDoors(levelConfig.doorNumber);
     }
+
+
+    private void SetUpDoors(int doorNumber)
+    {
+        float spacing = halfScreenWidth * 2 / (doorNumber + 1);
+        int winningDoorIndex = Random.Range(0, doorNumber);
+        for (int i = 0; i < doorNumber; i++)
+        {
+            GameObject newDoor = Instantiate(doorPrefab, doorsContainer.transform);
+            float xPos = -halfScreenWidth + spacing + (spacing * i);
+            newDoor.transform.position = new Vector3(xPos, 0, 0);
+            doors.Add(newDoor.GetComponent<Door>());
+            doors[i].HideCar(i == winningDoorIndex);
+        }
+    }
+
+    public void SelectDoor(int doorIndex)
+    {
+        selectedDoorIndex = doorIndex;
+        for (int i = 0; i < doors.Count; i++)
+        {
+            doors[i].SelectDoor(selectedDoorIndex);
+        }
+        confirmButton.interactable = true;
+    }
+
+    public void RevealNonWinningDoors(int doorNumber)
+    {
+        print("Revealing " + doorNumber + " doors...");
+    }
+
+    private void RevealChosenDoor()
+    {
+        print("revealing chosen door...");
+    }
+
     public void ShowFirstWheel()
     {
         string[] wheelOptions = levelConfig.wheelOptions;
@@ -59,39 +92,48 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-    private void SetUpDoors(int doorNumber)
-    {
-        float spacing = halfScreenWidth * 2 / (doorNumber + 1);
-        int winningDoorIndex = Random.Range(0, doorNumber);
-        for (int i = 0; i < doorNumber; i++)
-        {
-            GameObject newDoor = Instantiate(doorPrefab, doorsContainer.transform);
-            float xPos = -halfScreenWidth + spacing + (spacing * i);
-            newDoor.transform.position = new Vector3(xPos, 0, 0);
-            doors.Add(newDoor.GetComponent<Door>());
-            doors[i].HideCar(i == winningDoorIndex);
-        }
-
-    }
-
-    public void SelectDoor(int doorIndex)
-    {
-        selectedDoorIndex = doorIndex;
-        for (int i = 0; i < doors.Count; i++)
-        {
-            doors[i].SelectDoor(selectedDoorIndex);
-        }
-        confirmButton.interactable = true;
-    }
-
-    private void RevealChosenDoor()
-    {
-        print("revealing chosen door...");
-    }
-
     private void ShowSecondWheel()
     {
 
     }
 
+    public void ProcessWheelResult(string result)
+    {
+        switch (result)
+        {
+            case "lose_life":
+                gameManager.lives--;
+                break;
+            case "get_life":
+                gameManager.lives++;
+                break;
+            case "spin_again":
+                StartCoroutine(WaitAndShowFirstWheel());
+                break;
+            case "reveal_1":
+                RevealNonWinningDoors(1);
+                break;
+            case "reveal_2":
+                RevealNonWinningDoors(2);
+                break;
+            case "reveal_3":
+                RevealNonWinningDoors(3);
+                break;
+            case "reveal_4":
+                RevealNonWinningDoors(4);
+                break;
+            case "reveal_5":
+                RevealNonWinningDoors(5);
+                break;
+            case "reveal_6":
+                RevealNonWinningDoors(6);
+
+                break;
+        }
+    }
+    private IEnumerator WaitAndShowFirstWheel()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ShowFirstWheel();
+    }
 }
