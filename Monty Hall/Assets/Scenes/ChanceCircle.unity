@@ -677,6 +677,7 @@ MonoBehaviour:
   selectedDoorIndex: 0
   revealedDoorIndex: 0
   confirmButton: {fileID: 557879819}
+  pickerWheelPrefab: {fileID: 26468418698478095, guid: da2069b42b46f426fab2025c1ec0121a, type: 3}
 --- !u!4 &1598399717
 Transform:
   m_ObjectHideFlags: 0
