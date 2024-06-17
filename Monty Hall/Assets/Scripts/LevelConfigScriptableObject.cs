@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelConfigScriptableObject : ScriptableObject
+[CreateAssetMenu(fileName = "LevelConfig", menuName = "ScriptableObjects/LevelConfig", order = 1)]
+public class LevelConfig : ScriptableObject
 {
-    public LevelConfig[] levels;
+    public int doorNumber;
+    public string[] wheelOptions;
 }
+
+

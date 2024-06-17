@@ -13,24 +13,21 @@ public class LevelManager : MonoBehaviour
     {
         //initialize variables
         halfScreenWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        print("Screen width: " + halfScreenWidth);
-        InstantiateDoors(8);
     }
 
     public void SetUpLevel(LevelConfig levelConfig)
     {
-
+        print("Setting up level...");
+        InstantiateDoors(levelConfig.doorNumber);
     }
 
     private void InstantiateDoors(int doorNumber)
     {
-        float spacing = (halfScreenWidth * 2) / (doorNumber + 1);
-        print("spacing: " + spacing);
+        float spacing = halfScreenWidth * 2 / (doorNumber + 1);
         for (int i = 0; i < doorNumber; i++)
         {
             GameObject newDoor = Instantiate(doorPrefab, doorsContainer.transform);
-            float xPos = -(halfScreenWidth) + spacing + (spacing * i);
-            print("xPos: " + xPos);
+            float xPos = -halfScreenWidth + spacing + (spacing * i);
             newDoor.transform.position = new Vector3(xPos, 0, 0);
         }
     }

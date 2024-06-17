@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int currentLevel = 0;
     public LevelConfig[] levels;
-
     //private variables
     private LevelManager levelManager;
     private UIManager uiManager;
@@ -39,6 +38,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentLevel < levels.Length)
         {
+            print("Starting level " + currentLevel);
             currentLevel++;
             uiManager.ShowTransition(currentLevel);
             levelManager.SetUpLevel(levels[currentLevel - 1]);

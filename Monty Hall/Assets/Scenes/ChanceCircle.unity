@@ -367,7 +367,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 0
   currentLevel: 1
-  levels: []
+  levels:
+  - {fileID: 11400000, guid: e08ac36acdc8f4951aa7b73ce6cbb207, type: 2}
+  - {fileID: 11400000, guid: ff88f0099f2e24bc9a30c77296e769df, type: 2}
+  - {fileID: 11400000, guid: 6a80a51d456954b14be80bf91ee67b6b, type: 2}
+  - {fileID: 11400000, guid: 6b6506fda81c6419a8f48407a4fd584c, type: 2}
+  - {fileID: 11400000, guid: a60a0051de48e4241937f993ab338f3c, type: 2}
+  - {fileID: 11400000, guid: 96b2e75573d834b28b72cb09ecb0998b, type: 2}
+  - {fileID: 11400000, guid: c9b69874dd76b4decbf63da05257b3c2, type: 2}
+  - {fileID: 11400000, guid: c4c3b6d1e1bd94fe1bd2b3b3f22eefd9, type: 2}
 --- !u!4 &1788518606
 Transform:
   m_ObjectHideFlags: 0
