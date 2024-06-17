@@ -7,15 +7,17 @@ using UnityEngine.EventSystems;
 public class EventClick : MonoBehaviour, IPointerClickHandler
 {
     private Door door;
-    public GameController gameController;
+    public LevelManager levelManager;
     private void Awake()
     {
         door = GetComponent<Door>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
     public void OnPointerClick(PointerEventData eventData)
     {
-        gameController.SelectDoor(door.doorIndex);
+        print("door click");
+        levelManager.SelectDoor(door.doorIndex);
     }
 }

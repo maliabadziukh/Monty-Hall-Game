@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
     {
         if (currentLevel < levels.Length)
         {
-            print("Starting level " + currentLevel);
             currentLevel++;
+            print("Starting level " + currentLevel);
             uiManager.ShowTransition(currentLevel);
             levelManager.SetUpLevel(levels[currentLevel - 1]);
         }
