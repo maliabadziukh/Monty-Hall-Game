@@ -45,14 +45,31 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            EndGame();
+            WinGame();
         }
     }
 
-    void EndGame()
+    void WinGame()
     {
         //game end logic
     }
+    void Die()
+    {
 
+    }
+    public void LoseLife()
+    {
+        lives--;
+        uiManager.UpdateHearts(lives);
+        if (lives <= 0)
+        {
+            Die();
+        }
+    }
+    public void AddLife()
+    {
+        if (lives < 3) { lives++; }
+        uiManager.UpdateHearts(lives);
+    }
 
 }

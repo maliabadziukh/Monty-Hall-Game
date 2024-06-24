@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> menus;
+    [SerializeField] private GameObject[] hearts;
 
     public void ShowMenu(string menuName)
     {
@@ -29,6 +31,18 @@ public class UIManager : MonoBehaviour
             {
                 menu.SetActive(false);
             }
+        }
+    }
+
+    public void UpdateHearts(int lives)
+    {
+        foreach (GameObject heart in hearts)
+        {
+            heart.GetComponent<Image>().color = new(0.5f, 0.1f, 0.1f, 1);
+        }
+        for (int i = 3; i > lives; i--)
+        {
+            hearts[i - 1].GetComponent<Image>().color = Color.white;
         }
     }
     public void ShowTransition(int levelIndex)
