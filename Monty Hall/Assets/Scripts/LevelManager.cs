@@ -102,10 +102,10 @@ public class LevelManager : MonoBehaviour
         switch (result)
         {
             case "lose_life":
-                gameManager.lives--;
+                gameManager.LoseLife();
                 break;
             case "get_life":
-                gameManager.lives++;
+                gameManager.AddLife();
                 break;
             case "spin_again":
                 StartCoroutine(WaitAndShowFirstWheel());
