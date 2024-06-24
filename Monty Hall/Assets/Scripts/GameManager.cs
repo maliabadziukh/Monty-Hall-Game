@@ -55,22 +55,18 @@ public class GameManager : MonoBehaviour
     {
         //game end logic
     }
-    void Die()
-    {
 
-    }
     public void LoseLife()
     {
 
-        if (lives >= 0)
-        {
-            lives--;
-            uiManager.UpdateHearts(lives);
 
-        }
-        else
+        lives--;
+        uiManager.UpdateHearts(lives);
+        print("lives: " + lives);
+
+        if (lives <= 0)
         {
-            Die();
+            uiManager.ShowMenu("Death");
         }
     }
 
