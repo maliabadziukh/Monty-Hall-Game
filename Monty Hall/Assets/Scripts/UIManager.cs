@@ -7,7 +7,12 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> menus;
     [SerializeField] private GameObject[] hearts;
+    [SerializeField] private GameManager gameManagerPrefab;
 
+    private void Start()
+    {
+        ShowMenu("Start");
+    }
     public void ShowMenu(string menuName)
     {
         foreach (GameObject menu in menus)
@@ -32,6 +37,18 @@ public class UIManager : MonoBehaviour
                 menu.SetActive(false);
             }
         }
+    }
+    public void StartNewGame()
+    {
+        GameManager gm = FindObjectOfType<GameManager>();
+        if (gm != null)
+        {
+            Destroy(gm.gameObject);
+            print("deleted old game manager");
+        }
+        Instantiate(gameManagerPrefab);
+        print("created new game manager");
+        ShowMenu("");
     }
 
     public void UpdateHearts(int lives)

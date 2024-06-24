@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         uiManager = FindObjectOfType<UIManager>();
 
-
-        uiManager.ShowMenu("Start");
+        StartGame();
 
     }
 
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour
         //reset all variables to starting values
         currentLevel = 0;
         lives = 3;
-        uiManager.CloseMenu("Start");
+        print("game manager starting a new game");
         //start level
         NextLevel();
     }

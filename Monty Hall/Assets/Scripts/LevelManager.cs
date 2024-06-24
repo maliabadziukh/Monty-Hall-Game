@@ -22,20 +22,22 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         halfScreenWidth = Camera.main.orthographicSize * Camera.main.aspect;
-        gameManager = FindObjectOfType<GameManager>();
+
     }
 
     public void SetUpLevel(LevelConfig config)
     {
+        gameManager = FindObjectOfType<GameManager>();
         print("Setting up level...");
         levelConfig = config;
-        confirmButton.interactable = false;
+        confirmButton.gameObject.SetActive(false);
         SetUpDoors(levelConfig.doorNumber);
     }
 
 
     private void SetUpDoors(int doorNumber)
     {
+
         float spacing = halfScreenWidth * 2 / (doorNumber + 1);
         int winningDoorIndex = Random.Range(0, doorNumber);
         for (int i = 0; i < doorNumber; i++)
@@ -55,7 +57,7 @@ public class LevelManager : MonoBehaviour
         {
             doors[i].SelectDoor(selectedDoorIndex);
         }
-        confirmButton.interactable = true;
+        confirmButton.gameObject.SetActive(true);
     }
 
     public void RevealNonWinningDoors(int doorNumber)
@@ -129,6 +131,16 @@ public class LevelManager : MonoBehaviour
                 RevealNonWinningDoors(6);
 
                 break;
+        }
+    }
+
+    public void CleanUpLevel()
+    {
+        confirmButton.interactable = false;
+        foreach (Door door in doors)
+        {
+            doors.Remove(door);
+            Destroy(door.gameObject);
         }
     }
     private IEnumerator WaitAndShowFirstWheel()
