@@ -169,36 +169,34 @@ public class LevelManager : MonoBehaviour
     {
         switch (result)
         {
-            case "lose_life":
+            case "Lose life":
                 gameManager.LoseLife();
                 StartCoroutine(WaitBeforeReveal());
                 break;
-            case "get_life":
+            case "Get life":
                 gameManager.AddLife();
                 StartCoroutine(WaitBeforeReveal());
-
                 break;
-            case "spin_again":
+            case "Spin again":
                 StartCoroutine(WaitAndShowFirstWheel());
                 break;
-            case "reveal_1":
+            case "Reveal 1 door":
                 RevealNonWinningDoors(1);
                 break;
-            case "reveal_2":
+            case "Reveal 2 doors":
                 RevealNonWinningDoors(2);
                 break;
-            case "reveal_3":
+            case "Reveal 3 door":
                 RevealNonWinningDoors(3);
                 break;
-            case "reveal_4":
+            case "Reveal 4 doors":
                 RevealNonWinningDoors(4);
                 break;
-            case "reveal_5":
+            case "Reveal 5 doors":
                 RevealNonWinningDoors(5);
                 break;
-            case "reveal_6":
+            case "Reveal 6 doors":
                 RevealNonWinningDoors(6);
-
                 break;
         }
     }

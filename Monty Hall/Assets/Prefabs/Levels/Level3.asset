@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 3
   wheelOptions:
-  - lose_life
-  - get_life
-  - spin_again
-  - reveal_1
+  - Lose life
+  - Get life
+  - Spin again
+  - Reveal 1 door

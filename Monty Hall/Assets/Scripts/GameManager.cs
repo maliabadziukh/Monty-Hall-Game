@@ -47,26 +47,24 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            WinGame();
+            uiManager.ShowMenu("Win");
         }
     }
 
-    void WinGame()
-    {
-        //game end logic
-    }
+
 
     public void LoseLife()
     {
 
 
         lives--;
-        uiManager.UpdateHearts(lives);
-        print("lives: " + lives);
-
         if (lives <= 0)
         {
             uiManager.ShowMenu("Death");
+        }
+        else
+        {
+            uiManager.UpdateHearts(lives);
         }
     }
 

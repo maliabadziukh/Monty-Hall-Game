@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorNumber: 8
   wheelOptions:
-  - lose_life
-  - get_life
-  - spin_again
-  - reveal_1
-  - reveal_2
-  - reveal_3
-  - reveal_4
-  - reveal_5
-  - reveal_6
+  - Lose life
+  - Get life
+  - Spin again
+  - Reveal 1 door
+  - Reveal 2 doors
+  - Reveal 3 doors
+  - Reveal 4 doors
+  - Reveal 5 doors
+  - Reveal 6 doors
