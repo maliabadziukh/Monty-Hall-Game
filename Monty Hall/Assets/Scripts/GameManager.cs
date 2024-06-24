@@ -34,14 +34,16 @@ public class GameManager : MonoBehaviour
         NextLevel();
     }
 
-    void NextLevel()
+    public void NextLevel()
     {
         if (currentLevel < levels.Length)
         {
             currentLevel++;
             print("Starting level " + currentLevel);
             uiManager.ShowTransition(currentLevel);
-            levelManager.SetUpLevel(levels[currentLevel - 1]);
+            levelManager.CleanUpLevel();
+            StartCoroutine(WaitBeforeLevelSetup());
+
         }
         else
         {
@@ -82,6 +84,12 @@ public class GameManager : MonoBehaviour
     {
         cars++;
         uiManager.UpdateCars(cars);
+    }
+
+    private IEnumerator WaitBeforeLevelSetup()
+    {
+        yield return new WaitForSeconds(1);
+        levelManager.SetUpLevel(levels[currentLevel - 1]);
     }
 
 }

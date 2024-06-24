@@ -60,6 +60,7 @@ public class LevelManager : MonoBehaviour
             doors[i].SelectDoor(selectedDoorIndex);
         }
         confirmButton.gameObject.SetActive(true);
+        confirmButton.interactable = true;
     }
 
     public void RevealNonWinningDoors(int doorsToReveal)
@@ -90,8 +91,14 @@ public class LevelManager : MonoBehaviour
         if (doors[selectedDoorIndex].hasCar)
         {
             gameManager.AddCar();
+
+
         }
-        else (gameManager).LoseLife();
+        else
+        {
+            gameManager.LoseLife();
+        }
+        StartCoroutine(WaitBeforeNextLevel());
     }
 
     public void ShowFirstWheel()
@@ -129,9 +136,12 @@ public class LevelManager : MonoBehaviour
         {
             case "lose_life":
                 gameManager.LoseLife();
+                StartCoroutine(WaitBeforeReveal());
                 break;
             case "get_life":
                 gameManager.AddLife();
+                StartCoroutine(WaitBeforeReveal());
+
                 break;
             case "spin_again":
                 StartCoroutine(WaitAndShowFirstWheel());
@@ -160,16 +170,30 @@ public class LevelManager : MonoBehaviour
 
     public void CleanUpLevel()
     {
-        confirmButton.interactable = false;
-        foreach (Door door in doors)
+        confirmButton.gameObject.SetActive(false);
+        List<Door> doorsToRemove = new List<Door>(doors);
+
+        foreach (Door door in doorsToRemove)
         {
             doors.Remove(door);
             Destroy(door.gameObject);
         }
     }
+
+    private IEnumerator WaitBeforeReveal()
+    {
+        yield return new WaitForSeconds(0.5f);
+        RevealChosenDoor();
+    }
     private IEnumerator WaitAndShowFirstWheel()
     {
         yield return new WaitForSeconds(0.5f);
         ShowFirstWheel();
+    }
+
+    private IEnumerator WaitBeforeNextLevel()
+    {
+        yield return new WaitForSeconds(1);
+        gameManager.NextLevel();
     }
 }
