@@ -80,7 +80,6 @@ public class UIManager : MonoBehaviour
     public void QuitApplication()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
     }
 
 }

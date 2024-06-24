@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Chance.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/ChanceCircle.unity
+    guid: 1c00a771382b440a9846aaa226d57b8b
   m_configObjects: {}

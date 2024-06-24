@@ -186,7 +186,7 @@ public class LevelManager : MonoBehaviour
             case "Reveal 2 doors":
                 RevealNonWinningDoors(2);
                 break;
-            case "Reveal 3 door":
+            case "Reveal 3 doors":
                 RevealNonWinningDoors(3);
                 break;
             case "Reveal 4 doors":
