@@ -20,16 +20,16 @@ public class GameManager : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
 
 
+        uiManager.ShowMenu("Start");
 
-        StartGame();
     }
 
-    void StartGame()
+    public void StartGame()
     {
         //reset all variables to starting values
         currentLevel = 0;
         lives = 3;
-
+        uiManager.CloseMenu("Start");
         //start level
         NextLevel();
     }
