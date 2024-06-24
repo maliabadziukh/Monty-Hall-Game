@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int selectedDoorIndex;
     [SerializeField] private int revealedDoorIndex;
     private GameManager gameManager;
+    private UIManager uiManager;
     private LevelConfig levelConfig;
     private float halfScreenWidth;
     public Button confirmButton;
@@ -22,7 +23,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         halfScreenWidth = Camera.main.orthographicSize * Camera.main.aspect;
-
+        uiManager = FindObjectOfType<UIManager>();
     }
 
     public void SetUpLevel(LevelConfig config)

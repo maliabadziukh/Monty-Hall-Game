@@ -13,6 +13,7 @@ namespace EasyUI.PickerWheelUI
       [Header("References :")]
       [SerializeField] private GameObject linePrefab;
       [SerializeField] private Transform linesParent;
+      [SerializeField] private GameObject wheelPrefabParent;
 
       [Space]
       [SerializeField] private Transform PickerWheelTransform;
@@ -65,6 +66,11 @@ namespace EasyUI.PickerWheelUI
       {
 
 
+      }
+
+      public void DestroyWheel()
+      {
+         Destroy(wheelPrefabParent);
       }
       public void InitializeWheel(WheelPiece[] pieces)
       {
