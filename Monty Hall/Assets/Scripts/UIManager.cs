@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
             Destroy(gm.gameObject);
             print("deleted old game manager");
         }
+        Instantiate(gameManagerPrefab);
         ShowMenu("");
     }
 
@@ -60,6 +61,7 @@ public class UIManager : MonoBehaviour
         foreach (GameObject heart in hearts)
         {
             heart.GetComponent<Image>().color = Color.white;
+
         }
         for (int i = 3; i > lives; i--)
         {

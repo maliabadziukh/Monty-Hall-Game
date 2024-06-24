@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using EasyUI.PickerWheelUI;
@@ -40,7 +41,7 @@ public class LevelManager : MonoBehaviour
     {
 
         float spacing = halfScreenWidth * 2 / (doorNumber + 1);
-        int winningDoorIndex = Random.Range(0, doorNumber);
+        int winningDoorIndex = UnityEngine.Random.Range(0, doorNumber);
         for (int i = 0; i < doorNumber; i++)
         {
             GameObject newDoor = Instantiate(doorPrefab, doorsContainer.transform);
@@ -61,9 +62,26 @@ public class LevelManager : MonoBehaviour
         confirmButton.gameObject.SetActive(true);
     }
 
-    public void RevealNonWinningDoors(int doorNumber)
+    public void RevealNonWinningDoors(int doorsToReveal)
     {
-        print("Revealing " + doorNumber + " doors...");
+        List<int> nonWinningDoors = new();
+        for (int i = 0; i < doors.Count; i++)
+        {
+            if (i != selectedDoorIndex && !doors[i].hasCar)
+            {
+                nonWinningDoors.Add(i);
+            }
+        }
+        System.Random random = new System.Random();
+        for (int i = nonWinningDoors.Count - 1; i > 0; i--)
+        {
+            int j = random.Next(i + 1);
+            (nonWinningDoors[j], nonWinningDoors[i]) = (nonWinningDoors[i], nonWinningDoors[j]);
+        }
+        for (int i = 0; i < doorsToReveal && i < nonWinningDoors.Count; i++)
+        {
+            doors[nonWinningDoors[i]].Reveal();
+        }
     }
 
     public void RevealChosenDoor()
