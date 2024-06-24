@@ -185,7 +185,11 @@ MonoBehaviour:
     for easy and dynamic level set up - with one script i can make endless level
     variations with differnet number of doors and wheel outcomes. I also created
     a dynamic menu system that let me easily create and control which menus are shown
-    when. \n\nGame Design and programming - me\nAssets: "
+    when. \n\nGame Design and programming - me\n\nAssets: \nAhk\xE2m. (2016, July
+    9). Audi PNG auto car. freeiconspng.com. https://www.freeiconspng.com/img/16828
+    \n\nGoat PNG image with transparent background. (n.d.). pngimg.com. https://pngimg.com/image/13157
+    \n\nHerbou. (n.d.). GitHub - herbou/Unity_PickerWheelUI. GitHub. https://github.com/herbou/Unity_PickerWheelUI
+    \n\nMaxFyraZ. (2020, September 4). Door. OpenGameArt.org. https://opengameart.org/content/door-0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -194,8 +198,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283110175
-  m_fontColor: {r: 0.12264145, g: 0.0731132, b: 0.2924528, a: 1}
+    rgba: 4282781980
+  m_fontColor: {r: 0.11033733, g: 0.06581523, b: 0.2735849, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -212,10 +216,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 29.9
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -554,7 +558,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 129.1
+  m_fontSize: 112.85
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -688,7 +692,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.65
+  m_fontSize: 41.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2114,7 +2118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &644989496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2150,7 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.74105555, g: 0.76062804, b: 0.8584906, a: 1}
+  m_Color: {r: 0.9009434, g: 0.9174528, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
