@@ -66,7 +66,7 @@ public class LevelManager : MonoBehaviour
         print("Revealing " + doorNumber + " doors...");
     }
 
-    private void RevealChosenDoor()
+    public void RevealChosenDoor()
     {
         print("revealing chosen door...");
     }

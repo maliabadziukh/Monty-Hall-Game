@@ -70,6 +70,7 @@ namespace EasyUI.PickerWheelUI
 
       public void DestroyWheel()
       {
+         FindObjectOfType<LevelManager>().RevealChosenDoor();
          Destroy(wheelPrefabParent);
       }
       public void InitializeWheel(WheelPiece[] pieces)
