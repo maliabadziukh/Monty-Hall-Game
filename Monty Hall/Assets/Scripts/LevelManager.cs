@@ -68,7 +68,12 @@ public class LevelManager : MonoBehaviour
 
     public void RevealChosenDoor()
     {
-        print("revealing chosen door...");
+        doors[selectedDoorIndex].Reveal();
+        if (doors[selectedDoorIndex].hasCar)
+        {
+            gameManager.AddCar();
+        }
+        else (gameManager).LoseLife();
     }
 
     public void ShowFirstWheel()

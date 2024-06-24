@@ -3895,10 +3895,11 @@ MonoBehaviour:
   - {fileID: 255862495}
   - {fileID: 282559365}
   hearts:
-  - {fileID: 1199404416}
-  - {fileID: 1138596587}
   - {fileID: 225248154}
+  - {fileID: 1138596587}
+  - {fileID: 1199404416}
   gameManagerPrefab: {fileID: 2228762202981394750, guid: cc29ed3ed2e444a939bcf565fb8cbb32, type: 3}
+  carsText: {fileID: 1459248085}
 --- !u!1 &1902735146
 GameObject:
   m_ObjectHideFlags: 0

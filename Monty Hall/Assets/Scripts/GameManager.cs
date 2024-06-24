@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     //public variables 
     public int lives = 3;
+    public int cars = 0;
     public int currentLevel = 0;
     public LevelConfig[] levels;
     //private variables
@@ -18,9 +19,9 @@ public class GameManager : MonoBehaviour
         //init variables
         levelManager = FindObjectOfType<LevelManager>();
         uiManager = FindObjectOfType<UIManager>();
-
         StartGame();
-
+        uiManager.UpdateCars(cars);
+        uiManager.UpdateHearts(lives);
     }
 
     public void StartGame()
@@ -58,17 +59,29 @@ public class GameManager : MonoBehaviour
     }
     public void LoseLife()
     {
-        lives--;
-        uiManager.UpdateHearts(lives);
-        if (lives <= 0)
+
+        if (lives >= 0)
+        {
+            lives--;
+            uiManager.UpdateHearts(lives);
+
+        }
+        else
         {
             Die();
         }
     }
+
     public void AddLife()
     {
         if (lives < 3) { lives++; }
         uiManager.UpdateHearts(lives);
+    }
+
+    public void AddCar()
+    {
+        cars++;
+        uiManager.UpdateCars(cars);
     }
 
 }
