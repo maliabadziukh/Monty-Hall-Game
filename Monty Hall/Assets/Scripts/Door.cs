@@ -6,11 +6,13 @@ public class Door : MonoBehaviour
 {
     public bool hasCar;
     public int doorIndex;
+    public bool isRevealed = false;
     [SerializeField] private Sprite doorOpenSprite;
     [SerializeField] private Sprite doorClosedSprite;
     private GameObject car;
     private GameObject goat;
     private SpriteRenderer spriteRenderer;
+
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class Door : MonoBehaviour
 
     public void Reveal()
     {
+        isRevealed = true;
         spriteRenderer.sprite = doorOpenSprite;
         if (hasCar)
         {

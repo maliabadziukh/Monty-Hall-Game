@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using EasyUI.PickerWheelUI;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +17,11 @@ public class LevelManager : MonoBehaviour
     private LevelConfig levelConfig;
     private float halfScreenWidth;
     public Button confirmButton;
+    public Button finalConfirmButton;
     [SerializeField] private GameObject pickerWheelPrefab;
     private PickerWheel pickerWheel;
+    private bool isFinalChoice = false;
+
 
     void Start()
     {
@@ -34,6 +36,7 @@ public class LevelManager : MonoBehaviour
         levelConfig = config;
         confirmButton.gameObject.SetActive(false);
         SetUpDoors(levelConfig.doorNumber);
+        isFinalChoice = false;
     }
 
 
@@ -54,13 +57,36 @@ public class LevelManager : MonoBehaviour
 
     public void SelectDoor(int doorIndex)
     {
-        selectedDoorIndex = doorIndex;
+        int doorToSelect = doorIndex;
+
         for (int i = 0; i < doors.Count; i++)
         {
-            doors[i].SelectDoor(selectedDoorIndex);
+            if (!doors[i].isRevealed)
+            {
+                doors[i].SelectDoor(doorToSelect);
+                selectedDoorIndex = doorToSelect;
+
+            }
         }
-        confirmButton.gameObject.SetActive(true);
-        confirmButton.interactable = true;
+        if (doors[selectedDoorIndex].isRevealed)
+        {
+            confirmButton.gameObject.SetActive(false);
+            finalConfirmButton.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            if (isFinalChoice)
+            {
+                finalConfirmButton.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                confirmButton.gameObject.SetActive(true);
+            }
+        }
+
     }
 
     public void RevealNonWinningDoors(int doorsToReveal)
@@ -83,16 +109,17 @@ public class LevelManager : MonoBehaviour
         {
             doors[nonWinningDoors[i]].Reveal();
         }
+
+        AllowToSwap();
     }
 
     public void RevealChosenDoor()
     {
+        uiManager.ShowMenu("");
         doors[selectedDoorIndex].Reveal();
         if (doors[selectedDoorIndex].hasCar)
         {
             gameManager.AddCar();
-
-
         }
         else
         {
@@ -123,6 +150,14 @@ public class LevelManager : MonoBehaviour
         {
             RevealChosenDoor();
         }
+
+    }
+
+    private void AllowToSwap()
+    {
+        isFinalChoice = true;
+        confirmButton.gameObject.SetActive(false);
+        uiManager.ShowMenu("Swap");
 
     }
     private void ShowSecondWheel()
