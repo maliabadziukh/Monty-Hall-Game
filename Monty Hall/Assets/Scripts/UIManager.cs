@@ -36,4 +36,10 @@ public class UIManager : MonoBehaviour
         //show the level transition
     }
 
+    public void QuitApplication()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
+
 }
